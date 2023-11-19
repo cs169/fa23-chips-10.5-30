@@ -17,8 +17,12 @@ class Representative < ApplicationRecord
         end
       end
 
-      rep = Representative.create!({ name: official.name, ocdid: ocdid_temp,
-          title: title_temp })
+      # Find or create a representative based on ocdid
+      rep = Representative.find_or_create_by(ocdid: ocdid_temp) do |r|
+        r.name = official.name
+        r.title = title_temp
+      end
+
       reps.push(rep)
     end
 
