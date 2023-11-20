@@ -3,6 +3,10 @@
 class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
 
+  def show
+    @representative = Representative.find(params[:id])
+  end
+
   def self.civic_api_to_representative_params(rep_info)
     reps = []
 
