@@ -8,14 +8,15 @@ jobs:
   # TODO: Environment variables?
   build:
     runs-on: '${{ matrix.os }}'
+    env: ${{secrets.RAILS_MASTER_KEY}}
     strategy:
       matrix:
         os:
           - ubuntu-22.04
     steps:
-      - shell: bash
-        env: 
-          SUPER_SECRET: ${{secrets.RAILS_MASTER_KEY}}
+      #- shell: bash
+        #env: 
+          #SUPER_SECRET: ${{secrets.RAILS_MASTER_KEY}}
       - name: Cache multiple paths
         uses: actions/cache@v2
         with:
