@@ -8,7 +8,8 @@ jobs:
   # TODO: Environment variables?
   build:
     runs-on: '${{ matrix.os }}'
-    env: ${{secrets.RAILS_MASTER_KEY}}
+    env:
+      RAILS_MASTER_KEY: ${{secrets.RAILS_MASTER_KEY}}
     strategy:
       matrix:
         os:
