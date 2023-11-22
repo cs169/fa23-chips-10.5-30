@@ -16,8 +16,6 @@ jobs:
       - shell: bash
         env: 
           SUPER_SECRET: ${{secrets.RAILS_MASTER_KEY}}
-        run: |
-          example-command "$SUPER_SECRET"
       - name: Cache multiple paths
         uses: actions/cache@v2
         with:
