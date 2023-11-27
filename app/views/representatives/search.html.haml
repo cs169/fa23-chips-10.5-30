@@ -11,6 +11,7 @@
                             %th Party
                             %th News
                             %th Profile
+                            %th Tag
                     %tbody
                         - @representatives.each_with_index do |rep, _index|
                             %tr
@@ -22,7 +23,12 @@
                                         %i.fas.fa-newspaper
                                         News Articles
                                 %td 
-                                    = link_to representative_path(rep), class: 'btn btn-info ml-2' do
+                                    = link_to representative_path(rep.id), class: 'btn btn-info ml-2' do
                                         %i.fas.fa-info-circle
                                         Profile Page
+                                %td
+                                    = form_tag representative_path, method: :get do
+                                      = hidden_field_tag :representative_id, @representative.id
+                                      = submit_tag 'View Profile', class: 'btn btn-info ml-2'
+
                                 
