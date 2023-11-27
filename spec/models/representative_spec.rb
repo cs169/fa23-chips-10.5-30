@@ -8,21 +8,22 @@ RSpec.describe Representative, type: :model do
 
     it 'creates or finds representatives based on ocdid' do
       allow(rep_info).to receive(:officials).and_return([
-        double('official', name: 'Stone Werner'),
-        # can add more officials here
-      ])
+                                                          double('official', name: 'Stone Werner')
+                                                          # can add more officials here
+                                                        ])
 
       allow(rep_info).to receive(:offices).and_return([
-        double('office1', name: 'Mayor', division_id: 'ocdid1', official_indices: [0]),
-        # can add more officials here
-      ])
+                                                        double('office1', name: 'Mayor', division_id: 'ocdid1',
+official_indices: [0])
+                                                        # can add more officials here
+                                                      ])
 
       # Create a representative with the same ocdid to simulate an existing record
-      existing_rep = Representative.create(name: 'Arnold', ocdid: 'ocdid1', title: 'Governator')
+      existing_rep = described_class.create(name: 'Arnold', ocdid: 'ocdid1', title: 'Governator')
 
-      reps = Representative.civic_api_to_representative_params(rep_info)
+      reps = described_class.civic_api_to_representative_params(rep_info)
 
-      #should not have created a new rep becuase Arnold already has ocdid1
+      # should not have created a new rep becuase Arnold already has ocdid1
       expect(reps.size).to eq(1)
       expect(reps.first).to eq(existing_rep)
     end
