@@ -8,6 +8,7 @@
                         %tr
                             %th Name
                             %th Office
+                            %th Party
                             %th News
                             %th Profile
                     %tbody
@@ -15,6 +16,7 @@
                             %tr
                                 %td= rep.name
                                 %td= rep.title
+                                %td= rep.political_party
                                 %td
                                     = link_to representative_news_items_path(rep.id), class: 'btn btn-primary' do
                                         %i.fas.fa-newspaper

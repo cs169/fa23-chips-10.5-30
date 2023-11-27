@@ -9,6 +9,8 @@ class SearchController < ApplicationController
       service = Google::Apis::CivicinfoV2::CivicInfoService.new
       service.key = Rails.application.credentials[:GOOGLE_API_KEY]
       result = service.representative_info_by_address(address: address)
+      
+      # original
       @representatives = Representative.civic_api_to_representative_params(result)
       render 'representatives/search'
     rescue Google::Apis::Error => e
