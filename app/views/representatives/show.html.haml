@@ -1,30 +1,30 @@
 .row.mt-2
   .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-    %h3.text-center= @representative.name
+    %h3.text-center= #{@representative.name}
     .card-body
       .card-text
         %dl.row
           %dt.col-sm-3.text-md-right OCD ID:
-          %dt.col-sm-9= @representative.ocdid
+          %dt.col-sm-9= #{@representative.ocdid}
         %dl.row
           %dt.col-sm-3.text-md-right Title:
-          %dt.col-sm-9= @representative.title
+          %dt.col-sm-9= #{@representative.title}
         %dl.row
           %dt.col-sm-3.text-md-right Address:
-          %dt.col-sm-9= @representative.address
+          %dt.col-sm-9= #{@representative.address}
         %dl.row
           %dt.col-sm-3.text-md-right Political Party:
-          %dt.col-sm-9= @representative.political_party
+          %dt.col-sm-9= #{@representative.political_party}
         %dl.row
           %dt.col-sm-3.text-md-right Photo:
-          %dt.col-sm-9= @representative.photo
+          %dt.col-sm-9= #{@representative.photo}
   .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
     .clearfix
       .float-right
-        = link_to representative_edit_path(@representative), class: 'mx-1 btn btn-primary' do
-          %i.fas.fa-pencil
-          Edit
+        -#= link_to representative_edit_path(@representative), class: 'mx-1 btn btn-primary' do
+        -#  %i.fas.fa-pencil
+        -#  Edit
 
-        = link_to representative_news_items_path(@representative), class: 'mx-1 btn btn-info' do
-          %i.fas.fa-list
-          View all articles
+        -#= link_to representative_news_items_path(@representative), class: 'mx-1 btn btn-info' do
+        -#  %i.fas.fa-list
+        -#  View all articles
