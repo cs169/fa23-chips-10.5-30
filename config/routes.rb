@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     match '/my_events/:id', to: 'my_events#destroy', via: [:delete]
 
     # Routes for Representatives
+    # resources :representatives, only: [:show]
     resources :representatives
     # resources :representatives, only: [:index]
     resources :representatives do

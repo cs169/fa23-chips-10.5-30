@@ -11,7 +11,22 @@ class Representative < ApplicationRecord
   #photo
 
   def show
-    @representative = Representative.find(params[:id])
+    # @representative = Representative.find(params[:id])
+    @representative = Representative.find_by(ocdid: params[:id])
+    puts "Representative: #{@representative.inspect}"
+    
+    # Assuming you have a route parameter like :id
+    representative_id = params[:id]
+    
+    # Fetch the representative from the database
+    # @representative = Representative.find_by(id: representative_id)
+
+    # Check if the representative is found
+    if @representative.nil?
+      # Handle the case when the representative is not found, e.g., redirect or display an error message
+      flash[:alert] = "Representative not found."
+      redirect_to root_path
+    end
   end
 
   def self.civic_api_to_representative_params(rep_info)
