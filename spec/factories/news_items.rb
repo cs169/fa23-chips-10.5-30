@@ -7,6 +7,7 @@ FactoryBot.define do
     created_at { '' }
     updated_at { '' }
     link { '' }
+    id { '123' }
 
     # Associations
     association :representative, factory: :representative
