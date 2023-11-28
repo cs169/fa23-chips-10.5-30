@@ -11,7 +11,6 @@ class MyEventsController < SessionController
 
   def create
     @event = Event.new(event_params)
-
     if @event.save
       redirect_to events_path, notice: 'Event was successfully created.'
     else

@@ -21,7 +21,7 @@
                   = link_to representative_news_items_path(rep.id), class: 'btn btn-primary' do
                     %i.fas.fa-newspaper
                     News Articles
-                %td 
+                %td
                   = form_tag(representative_path(rep), method: :get) do
                     = hidden_field_tag :representative_name, rep.name
                     = submit_tag 'Profile', class: 'btn btn-primary'
