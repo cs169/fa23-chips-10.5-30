@@ -6,6 +6,7 @@ class CreateNewsItems < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.string :link, null: false
       t.text :description
+      t.text :issue
       t.belongs_to :representative, null: false, index: true
       t.timestamps null: false
     end

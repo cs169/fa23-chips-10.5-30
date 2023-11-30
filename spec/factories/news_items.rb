@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :news_item do
     title { 'Sample News' }
     representative_id { '' }
+    issue { '' }
     created_at { '' }
     updated_at { '' }
     link { '' }
