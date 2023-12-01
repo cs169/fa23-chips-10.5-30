@@ -9,7 +9,6 @@ RSpec.describe 'eslint analysis' do
   # Run `yarn run lint_fix` to fix eslint errors.
   it 'has no offenses' do
     # Example success: Done in 1.00s.
-    # expect(report).to match(/Done in \d+\.\d+s\.\s$/)
-    expect(report).to match(/yarn run v\d+\.\d+\.\d+\nDone in \d+\.\d+s\.\s$/)
+    expect(report).to match(/Done in \d+\.\d+s\.\s$/)
   end
 end

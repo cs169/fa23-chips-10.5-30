@@ -16,12 +16,10 @@ class CandidateController < ApplicationController
       Rails.logger.info("Response: #{output.body}")
       begin
         response_data = JSON.parse(output.body)
-        # Your existing code to handle the parsed data
       rescue JSON::ParserError => e
         puts "Error parsing JSON: #{e.message}"
-        # Handle the error, e.g., set @error_message and render an error view
       end
-      if response_data["status"] == "OK"
+      if response_data != nil
         # If the request is successful, call the model function
         @candidates = Candidate.propublica_to_candidates(response_data)
         @cycle = cycle 
@@ -30,7 +28,7 @@ class CandidateController < ApplicationController
       else
         # If the request is not successful, handle the error
         @error_message = response.body['message']
-        flash[:alert] = "Error fetching from API."
+        flash[:alert] = "Error fetching from API. Try again"
         render 'candidate/search'  
       end
     end 
