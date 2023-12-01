@@ -1,21 +1,22 @@
 = link_to 'Home', root_path, class: 'btn btn-primary mt-3'
-.container-fluid
-  .row.mt-2
-    .col-md-6.offset-md-3
-      %h1.text-center Top 20 Candidates per Cycle by Category
 
-      %form{ action: candidates_path, method: :get, class: 'mt-3' }
-        .form-row
-          .form-group.col-md-6
-            %label
-              Election Cycle:
-            = select_tag :cycle, options_for_select(@election_cycles), class: 'form-control'
-        
-          .form-group.col-md-6
-            %label
-              Financial Category:
-            = select_tag :category, options_for_select(@financial_categories), class: 'form-control'
-        
-        .form-row
-          .form-group.col-md-12
-            = submit_tag 'Search', class: 'btn btn-primary'
+.container-fluid
+    .row.mt-2
+        .col-md-6.offset-md-3
+            %h1.text-center Top 20 Candidates per Cycle by Category
+
+            %form{ action: candidates_path, method: :get }
+                .form-row
+                    .form-group.col-md-6
+                        %label
+                            Election Cycle:
+                        = select_tag :cycle, options_for_select(@election_cycles), class: 'form-control'
+
+                    .form-group.col-md-6
+                        %label
+                            Financial Category:
+                        = select_tag :category, options_for_select(@financial_categories), class: 'form-control'
+
+                .form-row
+                    .form-group.col-md-12
+                        = submit_tag 'Search', class: 'btn btn-primary'

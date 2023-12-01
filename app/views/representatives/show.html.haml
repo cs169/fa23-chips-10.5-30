@@ -1,22 +1,24 @@
 = link_to 'Home', root_path, class: 'btn btn-primary mt-3'
+
 .row.mt-2
-  .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-    %h3.text-center= @representative.name
-    .card-body
-      .card-text
-        %dl.row
-          %dt.col-sm-3.text-md-right OCD ID:
-          %dt.col-sm-9= @representative.ocdid
-        %dl.row
-          %dt.col-sm-3.text-md-right Title:
-          %dt.col-sm-9= @representative.title
-        %dl.row
-          %dt.col-sm-3.text-md-right Address:
-          %dd.col-sm-9= @representative.address
-        %dl.row
-          %dt.col-sm-3.text-md-right Political Party:
-          %dt.col-sm-9= @representative.political_party
-        %dl.row
-          %dt.col-sm-3.text-md-right Photo:
-          %dt.col-sm-9= "not found"
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h3.text-center= @representative.name
+        .card-body
+            .card-text
+                %dl.row
+                    %dt.col-sm-3.text-md-right OCD ID:
+                    %dt.col-sm-9= @representative.ocdid
+                %dl.row
+                    %dt.col-sm-3.text-md-right Title:
+                    %dt.col-sm-9= @representative.title
+                %dl.row
+                    %dt.col-sm-3.text-md-right Address:
+                    %dd.col-sm-9= @representative.address
+                %dl.row
+                    %dt.col-sm-3.text-md-right Political Party:
+                    %dt.col-sm-9= @representative.political_party
+                %dl.row
+                    %dt.col-sm-3.text-md-right Photo:
+                    %dt.col-sm-9= 'not found'
+
 = link_to 'Back to Representative Search', representatives_path, class: 'btn btn-primary mt-3'

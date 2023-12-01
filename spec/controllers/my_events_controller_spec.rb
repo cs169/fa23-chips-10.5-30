@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'spec_helper'
 
-
 describe MyEventsController do
-  let(:user) { double(User) } 
+  let(:user) { instance_double(User) }
 
   before do
     allow(controller).to receive(:require_login!)
-    #allow(controller).to receive(:current_user).and_return(user)
+    # allow(controller).to receive(:current_user).and_return(user)
   end
 
   describe 'GET #new' do
@@ -24,6 +25,7 @@ describe MyEventsController do
 
   describe 'POST #create' do
     let(:valid_params) { { event: attributes_for(:event) } }
+
     before do
       @state = create(:state)
       @county = create(:county, state_id: @state.id)
@@ -31,7 +33,8 @@ describe MyEventsController do
 
     context 'with valid params' do
       it 'creates a new event' do
-        @event = Event.create(name:'Test', county_id: @county.id,:start_time => Time.new(2024, 11, 24), :end_time=> Time.new(2024, 12, 1))
+        @event = Event.create(name: 'Test', county_id: @county.id, start_time: Time.new.getlocal(2024, 11, 24),
+                              end_time: Time.new.getlocal(2024, 12, 1))
         expect(@event).to be_valid
       end
     end
@@ -40,9 +43,9 @@ describe MyEventsController do
       let(:invalid_params) { { event: attributes_for(:event, name: nil) } }
 
       it 'does not create a new event' do
-        expect {
+        expect do
           post :create, params: invalid_params
-        }.not_to change(Event, :count)
+        end.not_to change(Event, :count)
       end
 
       it 'renders the new template' do
@@ -89,9 +92,9 @@ describe MyEventsController do
     let!(:event) { create(:event) }
 
     it 'destroys the requested event' do
-      expect {
+      expect do
         delete :destroy, params: { id: event.id }
-      }.to change(Event, :count).by(-1)
+      end.to change(Event, :count).by(-1)
     end
 
     it 'redirects to events_url with a success notice' do
