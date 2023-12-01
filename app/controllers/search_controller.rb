@@ -12,7 +12,7 @@ class SearchController < ApplicationController
     render 'representatives/search'
   rescue Google::Apis::Error => e
     # Log or handle the API error
-    puts "Google Civic API Error: #{e.message}"
+    Rails.logger.debug { "Google Civic API Error: #{e.message}" }
     flash[:alert] = 'Error fetching representative information. Please try again later.'
     render 'representatives/index'
   end
