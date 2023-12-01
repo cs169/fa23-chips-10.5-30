@@ -3,7 +3,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 describe MyEventsController do
-  let(:user) { double(User) }
+  let(:user) { instance_double(User) }
 
   before do
     allow(controller).to receive(:require_login!)
@@ -32,8 +32,8 @@ describe MyEventsController do
 
     context 'with valid params' do
       it 'creates a new event' do
-        @event = Event.create(name: 'Test', county_id: @county.id, start_time: Time.new(2024, 11, 24),
-                              end_time: Time.new(2024, 12, 1))
+        @event = Event.create(name: 'Test', county_id: @county.id, start_time: Time.new.getlocal(2024, 11, 24),
+                              end_time: Time.new.getlocal(2024, 12, 1))
         expect(@event).to be_valid
       end
     end
