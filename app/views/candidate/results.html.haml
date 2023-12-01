@@ -1,0 +1,10 @@
+%h1 Top 20 Candidates in #{@category} Category during #{@cycle}
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Candidate Name
+  %tbody
+    - @candidates.each do |candidate|
+      %tr
+        %td= candidate

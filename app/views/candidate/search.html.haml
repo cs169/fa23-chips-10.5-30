@@ -1,0 +1,10 @@
+= form_tag candidates_path, method: :get do
+  %label
+    Election Cycle:
+    = select_tag :cycle, options_for_select(@election_cycles)
+  
+  %label
+    Financial Category:
+    = select_tag :category, options_for_select(@financial_categories)
+  
+  = submit_tag 'Search'

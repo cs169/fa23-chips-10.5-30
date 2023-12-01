@@ -41,4 +41,9 @@ Rails.application.routes.draw do
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
     get '/search', to: 'search#search'
+
+    # Routes for Candidates (Campaign Finance API)
+    get '/candidates', to: 'candidate#search'
+
+
 end
