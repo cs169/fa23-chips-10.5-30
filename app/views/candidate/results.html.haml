@@ -1,5 +1,7 @@
 %h1 Top 20 Candidates in #{@category} Category during #{@cycle}
 
+= link_to 'Back to Candidate Search', candidates_path, class: 'btn btn-primary mt-3'
+
 %table.table.table-striped
   %thead
     %tr
@@ -8,3 +10,4 @@
     - @candidates.each do |candidate|
       %tr
         %td= candidate
+= link_to 'Back to Candidate Search', candidates_path, class: 'btn btn-primary mt-3'
