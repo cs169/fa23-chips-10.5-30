@@ -6,10 +6,12 @@ RSpec.describe Representative, type: :model do
   describe '.civic_api_to_representative_params' do
     let(:rep_info) { double('rep_info') }
 
-    before do 
-      allow(rep_info).to receive(:officials).and_return([double('official', name: 'Stone Werner', party: 'Democrat', address: 'Los Angeles', photo_url: '')])
-      allow(rep_info).to receive(:offices).and_return([double('office1', name: 'Mayor', division_id: 'ocdid1', official_indices: [0])])
-    end                                         
+    before do
+      allow(rep_info).to receive(:officials).and_return([double('official', name: 'Stone Werner', party: 'Democrat',
+address: 'Los Angeles', photo_url: '')])
+      allow(rep_info).to receive(:offices).and_return([double('office1', name: 'Mayor', division_id: 'ocdid1',
+official_indices: [0])])
+    end
 
     it 'no matching name, creates new rep' do
       existing_rep = described_class.create(name: 'Emma Holt', ocdid: 'ocdid1', title: 'Governator')

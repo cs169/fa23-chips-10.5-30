@@ -9,5 +9,4 @@ class Candidate < ApplicationRecord
     end
     names
   end
-
 end
