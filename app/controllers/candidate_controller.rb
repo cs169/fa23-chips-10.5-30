@@ -18,7 +18,7 @@ class CandidateController < ApplicationController
       begin
         response_data = JSON.parse(output.body)
       rescue JSON::ParserError => e
-        puts "Error parsing JSON: #{e.message}"
+        Rails.logger.error("Error parsing JSON: #{e.message}")
       end
       if response_data.nil?
         # If the request is not successful, handle the error

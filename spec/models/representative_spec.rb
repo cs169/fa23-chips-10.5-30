@@ -4,12 +4,12 @@ require 'rails_helper'
 
 RSpec.describe Representative, type: :model do
   describe '.civic_api_to_representative_params' do
-    let(:rep_info) { double('rep_info') }
+    let(:rep_info) { instance_double(rep_info) }
 
     before do
-      allow(rep_info).to receive(:officials).and_return([instance_double('official', name: 'Stone Werner', party: 'Democrat',
+      allow(rep_info).to receive(:officials).and_return([instance_double(official, name: 'Stone Werner', party: 'Democrat',
 address: 'Los Angeles', photo_url: '')])
-      allow(rep_info).to receive(:offices).and_return([instance_double('office1', name: 'Mayor', division_id: 'ocdid1',
+      allow(rep_info).to receive(:offices).and_return([instance_double(office1, name: 'Mayor', division_id: 'ocdid1',
 official_indices: [0])])
     end
 
