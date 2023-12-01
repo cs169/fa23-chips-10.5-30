@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require 'spec_helper'
 
@@ -17,7 +18,7 @@ describe MyNewsItemsController do
       it 'successfully creates object' do
         @news_item = NewsItem.create(title: 'Title', representative_id: representative.id, link: '', id: '')
         expect(@news_item).to be_valid
-        expect(@news_item.persisted?).to be_truthy
+        expect(@new_item).to be_persisted
       end
     end
   end
