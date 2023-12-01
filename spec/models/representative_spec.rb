@@ -8,12 +8,17 @@ RSpec.describe Representative, type: :model do
 
     before do
       allow(rep_info).to receive(:officials).and_return([
-                                                          instance_double(official, name: 'Stone Werner', party: 'Democrat',
-                                                          address: 'Los Angeles', photo_url: '')
+                                                          instance_double(official,
+                                                                          name:      'Stone Werner',
+                                                                          party:     'Democrat',
+                                                                          address:   'Los Angeles',
+                                                                          photo_url: '')
                                                         ])
       allow(rep_info).to receive(:offices).and_return([
-                                                        instance_double(office1, name: 'Mayor', division_id: 'ocdid1',
-                                                        official_indices: [0])
+                                                        instance_double(office1,
+                                                                        name:             'Mayor',
+                                                                        division_id:      'ocdid1',
+                                                                        official_indices: [0])
                                                       ])
     end
 
