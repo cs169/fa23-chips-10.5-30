@@ -1,12 +1,13 @@
+# frozen_string_literal: true
 
 FactoryBot.define do
   factory :user do
-    #sequence(:username) { |n| "user#{n}" }
+    # sequence(:username) { |n| "user#{n}" }
     email { 'test@gmail.com' }
-    #password { 'password' }
-    #password_confirmation { 'password' }
+    # password { 'password' }
+    # password_confirmation { 'password' }
     provider { 1 }
-    uid { "123" }
+    uid { '123' }
 
     trait :admin do
       role { 'admin' }
