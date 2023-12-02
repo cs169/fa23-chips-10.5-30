@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe NewsItemsController do
   let(:representative) { create(:representative) }
-  let(:news_item) { create(:news_item, representative_id: representative.id) }
+  let(:news_item) { create(:news_item, representative_id: representative.id, issue: "Free Speech") }
 
   describe 'GET #index' do
     it 'assigns @news_items and renders the index template' do

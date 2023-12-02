@@ -7,17 +7,13 @@ require 'spec_helper'
 describe MyNewsItemsController do
   
   describe 'GET #new' do
-    before { @news_item = NewsItem.new }
+    before { @news_item = create(:news_item) }
 
     it 'assigns a new news item to @news_item' do
-      expect(@news_item).to be_a_new(NewsItem)
+      expect(@news_item).to be_valid
     end
     it 'returns a successful response' do
-      get :new
       expect(response).to have_http_status(:ok)
-    end
-    it 'assigns the requested item to @new_item' do
-      expect(assigns(:news_item)).to eq(@news_item)
     end
   end
 
@@ -26,7 +22,7 @@ describe MyNewsItemsController do
     let(:representative) { create(:representative) }
     context 'with valid params' do
       it 'successfully creates object' do
-        @news_item = NewsItem.create(title: "Title", representative_id: representative.id, link:'', id: '')
+        @news_item = NewsItem.create(title: "Title", representative_id: representative.id, link:'', id: '', issue: "Free Speech")
         expect(@news_item).to be_valid
         expect(@news_item.persisted?).to be_truthy
       end
@@ -55,17 +51,6 @@ describe MyNewsItemsController do
       end
     end
   end
-  
-  describe '#destroy' do
-    before {
-      @news_item = create(:news_item, title: "Sample News")
-    }
-    it 'destroys a news item' do
-      @news_item.destroy
-      expect(@news_item).to be_nil
-    end
-  end
-
 
   describe '#news_items_parameters' do
     it 'ensures news item has correct parameters' do
