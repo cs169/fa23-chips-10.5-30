@@ -1,45 +1,52 @@
-# frozen_string_literal: true
+# spec/models/representative_spec.rb
 
 require 'rails_helper'
 
-RSpec.describe Representative, type: :model do
+RSpec.describe Representative do
   describe '.civic_api_to_representative_params' do
-    let(:rep_info) { instance_double(rep_info) }
-
-    before do
-      allow(rep_info).to receive(:officials).and_return([
-                                                          instance_double(official,
-                                                                          name:      'Stone Werner',
-                                                                          party:     'Democrat',
-                                                                          address:   'Los Angeles',
-                                                                          photo_url: '')
-                                                        ])
-      allow(rep_info).to receive(:offices).and_return([
-                                                        instance_double(office1,
-                                                                        name:             'Mayor',
-                                                                        division_id:      'ocdid1',
-                                                                        official_indices: [0])
-                                                      ])
+    let(:rep_info) do
+      OpenStruct.new(
+        officials: [
+          OpenStruct.new(name: 'John Doe', party: 'Democrat', address: '123 Main St', photo_url: 'http://example.com/john_doe.jpg'),
+          OpenStruct.new(name: 'Jane Smith', party: 'Republican', address: '456 Oak St', photo_url: 'http://example.com/jane_smith.jpg')
+        ],
+        offices: [
+          OpenStruct.new(name: 'Mayor', division_id: 'ocd-division/country:us/state:ny/city:new_york'),
+          OpenStruct.new(name: 'Governor', division_id: 'ocd-division/country:us/state:ny')
+        ]
+      )
     end
 
-    it 'no matching name, creates new rep' do
-      existing_rep = described_class.create(name: 'Emma Holt', ocdid: 'ocdid1', title: 'Governator')
+    it 'creates representatives from Civic API response' do
+      representatives = Representative.civic_api_to_representative_params(rep_info)
+      expect(representatives).to be_an(Array)
+      expect(representatives.size).to eq(2)
 
-      reps = described_class.civic_api_to_representative_params(rep_info)
+      expect(representatives[0].name).to eq('John Doe')
+      expect(representatives[0].ocdid).to eq('ocd-division/country:us/state:ny/city:new_york')
+      expect(representatives[0].title).to eq('Mayor')
+      expect(representatives[0].political_party).to eq('Democrat')
+      expect(representatives[0].address).to eq('123 Main St')
+      expect(representatives[0].photo).to eq('http://example.com/john_doe.jpg')
 
-      expect(reps.size).to eq(1)
-      expect(reps.first).not_to eq(existing_rep)
+      expect(representatives[1].name).to eq('Jane Smith')
+      expect(representatives[1].ocdid).to eq('ocd-division/country:us/state:ny')
+      expect(representatives[1].title).to eq('Governor')
+      expect(representatives[1].political_party).to eq('Republican')
+      expect(representatives[1].address).to eq('456 Oak St')
+      expect(representatives[1].photo).to eq('http://example.com/jane_smith.jpg')
     end
 
-    it 'finds rep, doesnt create new one' do
-      # Create a representative with the same Name to simulate an existing record
-      existing_rep = described_class.create(name: 'Stone Werner', ocdid: 'ocdid1', title: 'Governator')
-
-      reps = described_class.civic_api_to_representative_params(rep_info)
-
-      # should not have created a new rep becuase Arnold already has ocdid1
-      expect(reps.size).to eq(1)
-      expect(reps.first).to eq(existing_rep)
+    it 'does not create duplicate representatives with the same name' do
+      # Create a representative with the same name as the first official
+      existing_representative = create(:representative, name: 'John Doe')
+      representatives = Representative.civic_api_to_representative_params(rep_info)
+      expect(representatives).to be_an(Array)
+      expect(representatives.size).to eq(2)
+      expect(representatives[0]).to eq(existing_representative)
     end
   end
 end
+
+
+
